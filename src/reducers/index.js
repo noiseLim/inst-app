@@ -1,5 +1,7 @@
 const initialState = {
-    post: []
+    post: [],
+    loading: true,
+    error: false
 }
 
 const reducer = (state=initialState, action) => {
@@ -8,6 +10,19 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 post: action.payload,
+                loading: false
+            };
+        case 'POST_REQUESTED':
+            return {
+                ...state,
+                post: state.post,
+                loading: true
+            };
+        case 'POST_ERROR':
+            return {
+                ...state,
+                post: state.menu,
+                error: true
             }
         default:
             return state;

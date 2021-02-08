@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Error from '..error';
+import Error from '../error';
 
 export default class ErrorBoundry extends Component {
 
@@ -8,7 +8,7 @@ export default class ErrorBoundry extends Component {
     }
 
     componentDidCatch() {
-        this.state({error: true});
+        this.setState({error: true});
     }
 
     render() {

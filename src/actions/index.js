@@ -5,6 +5,20 @@ const postLoaded = (newPost) => {
     };
 }
 
+const postRequested = () => {
+    return {
+        type: 'POST_REQUESTED'
+    };
+}
+
+const postError = () => {
+    return {
+        type: 'POST_ERROR'
+    };
+}
+
 export {
-    postLoaded
+    postLoaded,
+    postRequested,
+    postError
 };

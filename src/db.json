@@ -8,9 +8,21 @@
       },
       {
         "title": "Sergey",
-        "url": "https://7toucans.com/images/story.jpg",
+        "url": "https://cdn.lifehack.org/wp-content/uploads/2015/02/Frequent-Traveler-Successful.jpg",
         "category": "holiday",
-        "id": 1
+        "id": 2
+      },
+      {
+        "title": "Elena",
+        "url": "https://i.pinimg.com/564x/74/32/04/7432047b679ddeb17af6910af4c58c9d.jpg",
+        "category": "travel",
+        "id": 3
+      },
+      {
+        "title": "Natali",
+        "url": "https://bestvietnam.ru/wp-content/uploads/2019/04/%D0%BF%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D0%B5.jpg",
+        "category": "holiday",
+        "id": 4
       }
     ]
   }

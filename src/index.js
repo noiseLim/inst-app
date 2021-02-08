@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
 import ErrorBoundry from './components/error-boundry';
 import InstService from './services/inst-service';
-import InstServiceContext from './components/resto-service-context';
+import InstServiceContext from './components/inst-service-context';
 import store from './store';
 
 
