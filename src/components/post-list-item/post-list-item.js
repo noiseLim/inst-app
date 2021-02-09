@@ -1,5 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
+import IconGrid from '../icon-grid';
+import CommentList from '../comment-list';
 
 import './post-list-item.scss';
 
@@ -9,12 +11,17 @@ const PostListItem = ({postItem}) => {
 
     return (
         <li className="post__item">
-            <Link to = {`/${postItem.id}`}>
-                <div className="post__title">{user}</div>
-                <img className="post__img" src={url} alt={title}></img>
-                <div className="post__category"><span>{user}</span> {title}</div>
-                <button className="post__btn">Add comment</button>
-            </Link>      
+            {/* <Link to = {`/${postItem.id}`}> */}
+            <div className="post__header">{user}</div>
+            <img className="post__img" src={url} alt={title}></img>
+            <IconGrid/>
+            <div className="post__user"><span>{user}</span> {title}</div>
+            <CommentList/>
+            {/* onToggleImportant ={() => onToggleImportant(id)}
+            onToggleLiked={() => onToggleLiked(id)} */}
+
+            {/* <button className="post__btn">Add comment</button> */}
+            {/* </Link>       */}
         </li>
     )
 }

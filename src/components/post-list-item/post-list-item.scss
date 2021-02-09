@@ -9,7 +9,7 @@
         padding: 20px;
         margin-bottom: 40px;
     }
-    &__title {
+    &__header {
         font-size: 22px;
         margin-bottom: 20px;
         text-align: center;
@@ -18,14 +18,14 @@
         width: calc(100% + 40px);
         transform: translateX(-20px);
         object-fit: cover;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
-    &__category {
-        font-size: 16px;
+    &__user {
+        font-size: 14px;
         font-weight: 400;
         margin-bottom: 10px;
         span {
-            font-weight: 500;
+            font-weight: 600;
         }
     }
     &__btn {
