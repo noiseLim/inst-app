@@ -2,6 +2,7 @@ import React from 'react';
 // import {Link} from 'react-router-dom';
 import IconGrid from '../icon-grid';
 import CommentList from '../comment-list';
+import CommentAddForm from '../comment-add-form';
 
 import './post-list-item.scss';
 
@@ -17,6 +18,7 @@ const PostListItem = ({postItem}) => {
             <IconGrid/>
             <div className="post__user"><span>{user}</span> {title}</div>
             <CommentList/>
+            <CommentAddForm/>
             {/* onToggleImportant ={() => onToggleImportant(id)}
             onToggleLiked={() => onToggleLiked(id)} */}
 

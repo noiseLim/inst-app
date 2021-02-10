@@ -1,16 +1,18 @@
 import React from 'react';
 import CommentListItem from '../comment-list-item';
+import {connect} from 'react-redux';
+import {addedToComment} from '../../actions';
 
-const CommentList = ({comments, onDelete}) => {
+const CommentList = ({commentItems}) => {
 
-    const elements = comments.map((item) => {
+    const elements = commentItems.map((item) => {
 
         if (typeof item === 'object' && isEmpty(item)) {
             const {id, ...itemProps} = item
             return (
                 <li key={id} className="list-group-item">
-                    <CommentListItem {...itemProps} 
-                    onDelete={() => onDelete(id)}/>
+                    <CommentListItem {...itemProps}
+                    onAddToComment={() => addedToComment(item.id)}/>
                 </li>
             )
         }
@@ -30,4 +32,14 @@ const CommentList = ({comments, onDelete}) => {
     )
 }
 
-export default CommentList;
+const mapStateToProps = (state) => {
+    return {
+        commentItems: state.comments
+    }
+}
+
+const maDispatchToProps = {
+    addedToComment
+}
+
+export default connect(mapStateToProps, maDispatchToProps)(CommentList);

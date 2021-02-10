@@ -17,8 +17,16 @@ const postError = () => {
     };
 }
 
+const addedToComment = (id) => {
+    return {
+        type: 'ITEM_ADD_TO_COMMENT',
+        payload: id
+    };
+}
+
 export {
     postLoaded,
     postRequested,
-    postError
+    postError,
+    addedToComment
 };

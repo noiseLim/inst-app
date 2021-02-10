@@ -1,7 +1,8 @@
 const initialState = {
     post: [],
     loading: true,
-    error: false
+    error: false,
+    comments: []
 }
 
 const reducer = (state=initialState, action) => {
@@ -23,6 +24,21 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 post: state.menu,
                 error: true
+            }
+        case 'ITEM_ADD_TO_COMMENT':
+            const id = action.payload;
+            const commentInState = state.comments.find(item => item.id === id);
+            const newComment = {
+                ...commentInState,
+                commentInState
+            }
+            return {
+                ...state,
+                comments: [
+                    ...state.comments.slice(0, newComment),
+                    newComment,
+                    ...state.comments.slice(newComment + 1)
+                ]
             }
         default:
             return state;
