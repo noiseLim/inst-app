@@ -16,13 +16,17 @@ export default class InstService {
         return await this.getResource(`/post/`);
     }
 
+    async getCommentItems() {
+        return await this.getResource(`/comment/`);
+    }
+
     async setComment(text) {
         const number = await this.getCommentNumber();
         const newOrder = {
             id: number,
             comment: text
         }
-        const response = await fetch(`${this._apiBase}/post`, {
+        const response = await fetch(`${this._apiBase}/comment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -35,7 +39,7 @@ export default class InstService {
     }
 
     async getCommentNumber() {
-        const res = await this.getResource('/post/');
+        const res = await this.getResource('/comment/');
         const commentNumber = res.length + 1;
 
         return commentNumber;

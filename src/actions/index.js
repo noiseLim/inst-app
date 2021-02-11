@@ -11,15 +11,34 @@ const postRequested = () => {
     };
 }
 
+const commentLoaded = (newComment) => {
+    return {
+        type: 'COMMENT_LOADED',
+        payload: newComment
+    };
+}
+
+const commentRequested = () => {
+    return {
+        type: 'COMMENT_REQUESTED'
+    };
+}
+
 const postError = () => {
     return {
         type: 'POST_ERROR'
     };
 }
 
-const addedToComment = (id) => {
+const commentError = () => {
     return {
-        type: 'ITEM_ADD_TO_COMMENT',
+        type: 'COMMENT_ERROR'
+    };
+}
+
+const addedToCommentList = (id) => {
+    return {
+        type: 'ITEM_ADD_TO_COMMENT_LIST',
         payload: id
     };
 }
@@ -27,6 +46,9 @@ const addedToComment = (id) => {
 export {
     postLoaded,
     postRequested,
+    commentLoaded,
+    commentRequested,
     postError,
-    addedToComment
+    commentError,
+    addedToCommentList
 };

@@ -1,16 +1,20 @@
 import React from 'react';
 // import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 // import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
-import {connect} from 'react-redux';
+// import {connect} from 'react-redux';
 import './comment-list-item.css';
 
-const CommentListItem = ({label}) => {
+const CommentListItem = ({commentItem}) => {
+    // console.log(commentItem);
+
+    const {comment} = commentItem;
+    console.log(comment);
 
     return (
         <div className="com-list-item">
             <span
             className="com-list-item-label">
-                {label}
+                {comment}
             </span>
             <div className="d-flex justify-content-center align-items-center">
                 {/* <button
@@ -30,10 +34,11 @@ const CommentListItem = ({label}) => {
     )
 }
 
-const mapStateToProps = ({state}) => {
-    return {
-        label: state.comments
-    }
-}
+// const mapStateToProps = ({state}) => {
+//     return {
+//         label: state.comments
+//     }
+// }
 
-export default connect(mapStateToProps)(CommentListItem);
+// export default connect(mapStateToProps)(CommentListItem);
+export default CommentListItem;

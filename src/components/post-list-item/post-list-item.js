@@ -8,7 +8,7 @@ import './post-list-item.scss';
 
 const PostListItem = ({postItem}) => {
 
-    const {title, user, url} = postItem;
+    const {title, user, url, id} = postItem;
 
     return (
         <li className="post__item">
@@ -18,13 +18,15 @@ const PostListItem = ({postItem}) => {
             <IconGrid/>
             <div className="post__user"><span>{user}</span> {title}</div>
             <CommentList/>
-            <CommentAddForm/>
+            <CommentAddForm
+                postItem={id}/>
             {/* onToggleImportant ={() => onToggleImportant(id)}
             onToggleLiked={() => onToggleLiked(id)} */}
 
             {/* <button className="post__btn">Add comment</button> */}
             {/* </Link>       */}
         </li>
+        
     )
 }
 

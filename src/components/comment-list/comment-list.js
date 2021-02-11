@@ -1,45 +1,124 @@
-import React from 'react';
+// import React, {useEffect} from 'react';
+// import CommentListItem from '../comment-list-item';
+// import WithInstService from '../hoc';
+// import {connect} from 'react-redux';
+// import Error from '../error';
+// import Spinner from '../spinner';
+// import {addedToCommentList, commentLoaded, commentRequested, commentError} from '../../actions';
+
+// const CommentList = ({InstService, commentRequested, commentLoaded, commentError, commentItems, error, loading}) => {
+
+//     useEffect(() => {
+//         commentRequested();
+//         InstService.getCommentItems()
+//             .then(res => commentLoaded(res))
+//             .catch(error => commentError());
+//     }, [])
+
+//     if (error) {
+//         return <Error/>
+//     }
+//     if (loading) {
+//         return <Spinner/>
+//     }
+
+//     const elements = commentItems.map((commentItem) => {
+//         return (
+//             <li key={commentItem.id} className="list-group-item">
+//                 <CommentListItem
+//                     commentItem={commentItem}
+//                     onAddToComment={() => addedToCommentList(commentItem.id)}/>
+//             </li>
+//         )
+
+//     })
+//     console.log(elements);
+
+//     return (
+//         <div className="app-list">
+//             {elements}
+//         </div>
+//     )
+// }
+
+// const mapStateToProps = (state) => {
+//     return {
+//         commentItems: state.comments,
+//         loading: state.loading,
+//         error: state.error
+//     }
+// }
+
+// const mapDispatchToProps = {
+//     addedToCommentList,
+//     commentLoaded,
+//     commentRequested,
+//     commentError
+// }
+
+// export default WithInstService()(connect(mapStateToProps, mapDispatchToProps)(CommentList));
+
+
+import React, {Component} from 'react';
 import CommentListItem from '../comment-list-item';
+import WithInstService from '../hoc';
 import {connect} from 'react-redux';
-import {addedToComment} from '../../actions';
+import Error from '../error';
+import Spinner from '../spinner';
+import {addedToCommentList, commentLoaded, commentRequested, commentError} from '../../actions';
 
-const CommentList = ({commentItems}) => {
+class CommentList extends Component {
+    componentDidMount() {
+        this.props.commentRequested();
 
-    const elements = commentItems.map((item) => {
+        const {InstService} = this.props;
+        InstService.getCommentItems()
+            .then(res => this.props.commentLoaded(res))
+            .catch(error => this.props.commentError());
+    }
+    render() {
+        const {commentItems, loading, error} = this.props;
 
-        if (typeof item === 'object' && isEmpty(item)) {
-            const {id, ...itemProps} = item
+        if (error) {
+            return <Error/>
+        }
+        if (loading) {
+            return <Spinner/>
+        }
+    
+        const elements = commentItems.map((commentItem) => {
             return (
-                <li key={id} className="list-group-item">
-                    <CommentListItem {...itemProps}
-                    onAddToComment={() => addedToComment(item.id)}/>
+                <li key={commentItem.id} className="list-group-item">
+                    <CommentListItem
+                        commentItem={commentItem}
+                        onAddToComment={() => addedToCommentList(commentItem.id)}/>
                 </li>
             )
-        }
-    });
-
-    function isEmpty(obj) {
-        for (let key in obj) {
-            return true;
-        }
-        return false;
-    }
-
-    return (
-        <div className="app-list">
-            {elements}
-        </div>
-    )
-}
-
-const mapStateToProps = (state) => {
-    return {
-        commentItems: state.comments
+    
+        })
+    
+        return (
+            <div className="app-list">
+                {elements}
+            </div>
+        )
     }
 }
-
-const maDispatchToProps = {
-    addedToComment
-}
-
-export default connect(mapStateToProps, maDispatchToProps)(CommentList);
+    
+    const mapStateToProps = (state) => {
+        return {
+            commentItems: state.comments,
+            loading: state.loading,
+            error: state.error
+        }
+    }
+    
+    const mapDispatchToProps = {
+        addedToCommentList,
+        commentLoaded,
+        commentRequested,
+        commentError
+    }
+    
+    export default WithInstService()(connect(mapStateToProps, mapDispatchToProps)(CommentList));
+    

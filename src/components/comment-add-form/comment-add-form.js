@@ -1,24 +1,29 @@
 import React, {useState} from 'react';
-import {connect} from 'react-redux';
 import WithInstService from '../hoc';
+// import {connect} from 'react-redux';
 import './comment-add-form.css';
 
-function CommentAddForm({InstService}) {
+function CommentAddForm({InstService, postItem}) {
 
     const [text, setText] = useState('');
     const [maxId, setMaxId] = useState(1);
-    console.log(text);
 
     const onSubmit = () => {
         setText('');
     }
 
+    // const generateCommentOrder = (text) => {
+    //     setMaxId(maxId + 1) 
+    //     const newOrder = {
+    //         label: text,
+    //         id: maxId,
+    //         postId: postItem
+    //     }
+    //     return newOrder;
+    // }
     const generateCommentOrder = (text) => {
         setMaxId(maxId + 1) 
-        const newOrder = {
-            label: text,
-            id: maxId
-        }
+        const newOrder = text;
         return newOrder;
     }
 
@@ -43,11 +48,4 @@ function CommentAddForm({InstService}) {
     )    
 }
 
-const mapDispatchToProps = ({text}) => {
-    console.log(text);
-    return {
-        comments: text
-    }
-}
-
-export default WithInstService()(connect(null, mapDispatchToProps)(CommentAddForm));
+export default WithInstService()(CommentAddForm);
