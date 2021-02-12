@@ -8,7 +8,6 @@ const CommentListItem = ({commentItem}) => {
     // console.log(commentItem);
 
     const {comment} = commentItem;
-    console.log(comment);
 
     return (
         <div className="com-list-item">

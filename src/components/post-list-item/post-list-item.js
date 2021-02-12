@@ -25,8 +25,7 @@ const PostListItem = ({postItem}) => {
 
             {/* <button className="post__btn">Add comment</button> */}
             {/* </Link>       */}
-        </li>
-        
+        </li>        
     )
 }
 
