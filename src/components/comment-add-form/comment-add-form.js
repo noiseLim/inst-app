@@ -42,7 +42,7 @@ function CommentAddForm({InstService, postItem}) {
             <button
                 type="submit"
                 className="btn btn-outline-secondary"
-                onClick={() => {InstService.setComment(generateCommentOrder(text))}}>
+                onClick={() => {InstService.setComment(generateCommentOrder(text), postItem)}}>
                 Post</button>
         </form>
     )    

@@ -8,12 +8,12 @@ import {addedToCommentList, commentLoaded, commentRequested, commentError} from 
 
 function CommentList({InstService, commentRequested, commentLoaded, commentError, commentItems, error, loading}) {
 
-    useEffect(() => {
-        commentRequested();
-        InstService.getCommentItems()
-            .then(res => commentLoaded(res))
-            .catch(error => commentError());
-    }, [])
+    // useEffect(() => {
+    //     commentRequested();
+    //     InstService.getCommentItems()
+    //         .then(res => commentLoaded(res))
+    //         .catch(error => commentError());
+    // }, [])
 
     if (error) {
         return <Error/>
@@ -50,9 +50,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     addedToCommentList,
-    commentLoaded,
-    commentRequested,
-    commentError
+    // commentLoaded,
+    // commentRequested,
+    // commentError
 }
 
 export default WithInstService()(connect(mapStateToProps, mapDispatchToProps)(CommentList));

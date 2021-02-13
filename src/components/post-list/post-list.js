@@ -4,17 +4,22 @@ import {connect} from 'react-redux';
 import WithInstService from '../hoc';
 import Error from '../error';
 import Spinner from '../spinner';
-import {postLoaded, postRequested, postError} from '../../actions';
+import {postLoaded, postRequested, postError, commentRequested, commentLoaded, commentError,} from '../../actions';
 
 import './post-list.scss'
 
-function PostList({postRequested, InstService, postLoaded, postError, error, loading, postItems}) {
+function PostList({postRequested, InstService, postLoaded, postError, commentRequested, commentLoaded, commentError, error, loading, postItems}) {
 
     useEffect(() => {
         postRequested();
         InstService.getPostItems()
             .then(res => postLoaded(res))
             .catch(error => postError());
+
+        commentRequested();
+        InstService.getCommentItems()
+            .then(res => commentLoaded(res))
+            .catch(error => commentError());
     }, [])
 
     if (error) {
@@ -38,6 +43,7 @@ function PostList({postRequested, InstService, postLoaded, postError, error, loa
 const mapStateToProps = (state) => {
     return {
         postItems: state.posts,
+        commentItems: state.comments,
         loading: state.loading,
         error: state.error
     }
@@ -46,7 +52,10 @@ const mapStateToProps = (state) => {
 const maDispatchToProps = {
     postLoaded,
     postRequested,
-    postError
+    postError,
+    commentLoaded,
+    commentRequested,
+    commentError
 }
 
 const View = ({items}) => {

@@ -17,7 +17,8 @@ const PostListItem = ({postItem}) => {
             <img className="post__img" src={url} alt={title}></img>
             <IconGrid/>
             <div className="post__user"><span>{user}</span> {title}</div>
-            <CommentList/>
+            <CommentList
+                key={id}/>
             <CommentAddForm
                 postItem={id}/>
             {/* onToggleImportant ={() => onToggleImportant(id)}

@@ -20,11 +20,12 @@ export default class InstService {
         return await this.getResource(`/comment/`);
     }
 
-    async setComment(text) {
+    async setComment(text, id) {
         const number = await this.getCommentNumber();
         const newOrder = {
             id: number,
-            comment: text
+            comment: text,
+            idPost: id
         }
         const response = await fetch(`${this._apiBase}/comment`, {
             method: 'POST',
