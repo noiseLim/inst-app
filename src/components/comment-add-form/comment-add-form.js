@@ -3,7 +3,7 @@ import WithInstService from '../hoc';
 // import {connect} from 'react-redux';
 import './comment-add-form.css';
 
-function CommentAddForm({InstService, postItem}) {
+function CommentAddForm({InstService, postItem, onAddToComment}) {
 
     const [text, setText] = useState('');
     const [maxId, setMaxId] = useState(1);
@@ -42,10 +42,14 @@ function CommentAddForm({InstService, postItem}) {
             <button
                 type="submit"
                 className="btn btn-outline-secondary"
-                onClick={() => {InstService.setComment(generateCommentOrder(text), postItem)}}>
+                onClick={() => {
+                    InstService.setComment(generateCommentOrder(text), postItem);
+                    onAddToComment();
+                    }}>
                 Post</button>
         </form>
     )    
 }
+
 
 export default WithInstService()(CommentAddForm);

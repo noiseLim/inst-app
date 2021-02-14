@@ -3,12 +3,16 @@ import React from 'react';
 import IconGrid from '../icon-grid';
 import CommentList from '../comment-list';
 import CommentAddForm from '../comment-add-form';
+import {addedToCommentList} from '../../actions';
+import {connect} from 'react-redux';
+
 
 import './post-list-item.scss';
 
 const PostListItem = ({postItem}) => {
 
     const {title, user, url, id} = postItem;
+    console.log(id);
 
     return (
         <li className="post__item">
@@ -20,7 +24,8 @@ const PostListItem = ({postItem}) => {
             <CommentList
                 key={id}/>
             <CommentAddForm
-                postItem={id}/>
+                postItem={id}
+                onAddToComment={() => addedToCommentList(id)}/>
             {/* onToggleImportant ={() => onToggleImportant(id)}
             onToggleLiked={() => onToggleLiked(id)} */}
 
@@ -29,5 +34,8 @@ const PostListItem = ({postItem}) => {
         </li>        
     )
 }
+const mapDispatchToProps = {
+    addedToCommentList
+}
 
-export default PostListItem;
+export default (connect(null, mapDispatchToProps)(PostListItem));
