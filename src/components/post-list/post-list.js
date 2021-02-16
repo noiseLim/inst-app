@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import PostListItem from '../post-list-item';
-import {connect} from 'react-redux';
 import WithInstService from '../hoc';
 import Error from '../error';
 import Spinner from '../spinner';
@@ -9,35 +8,20 @@ import {postLoaded, postRequested, postError} from '../../actions';
 
 import './post-list.scss'
 
-const PostList = ({postRequested, InstService, postLoaded, postError}) => {
+const PostList = ({InstService}) => {
     
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const postItems = useSelector(state => state.posts);
     const loading = useSelector(state => state.loading);
     const error = useSelector(state => state.error);
      // const commentItems = useSelector(state => state.comments);
-     
-    
 
     useEffect(() => {
-        postRequested();
+        dispatch(postRequested())
         InstService.getPostItems()
-            .then(res => postLoaded(res))
-            .catch(error => postError());
-
-    // useEffect(() => {
-    //     dispatch(postRequested());
-    //     console.log(postRequested());
-    //     InstService.getPostItems()
-    //         .then(res => {
-    //             dispatch(postLoaded(res));
-    //             console.log(postLoaded(res));
-    //         })
-    //         .catch(error => {
-    //             dispatch(postError());
-    //             console.log(postError());
-    //         });
+            .then(res => dispatch(postLoaded(res)))
+            .catch(error => dispatch(postError()))
             
         // commentRequested();
         // InstService.getCommentItems()
@@ -63,24 +47,6 @@ const PostList = ({postRequested, InstService, postLoaded, postError}) => {
     )
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         postItems: state.posts,
-//         commentItems: state.comments,
-//         loading: state.loading,
-//         error: state.error
-//     }
-// }
-
-const mapDispatchToProps = {
-    postLoaded,
-    postRequested,
-    postError
-    // commentLoaded,
-    // commentRequested,
-    // commentError
-}
-
 const View = ({items}) => {
     return (
         <ul className="post__list">
@@ -89,5 +55,4 @@ const View = ({items}) => {
     )
 }
 
-export default WithInstService()(connect(null, mapDispatchToProps)(PostList));
-// export default WithInstService()(PostList);
+export default WithInstService()(PostList);
