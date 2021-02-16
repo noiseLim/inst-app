@@ -12,7 +12,7 @@ import './post-list-item.scss';
 const PostListItem = ({postItem}) => {
 
     const {title, user, url, id} = postItem;
-    console.log(id);
+    // console.log(id);
 
     return (
         <li className="post__item">
@@ -21,8 +21,8 @@ const PostListItem = ({postItem}) => {
             <img className="post__img" src={url} alt={title}></img>
             <IconGrid/>
             <div className="post__user"><span>{user}</span> {title}</div>
-            <CommentList
-                key={id}/>
+            {/* <CommentList
+                key={id}/> */}
             <CommentAddForm
                 postItem={id}
                 onAddToComment={() => addedToCommentList(id)}/>
