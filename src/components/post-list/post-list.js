@@ -4,7 +4,8 @@ import PostListItem from '../post-list-item';
 import WithInstService from '../hoc';
 import Error from '../error';
 import Spinner from '../spinner';
-import {postLoaded, postRequested, postError} from '../../actions';
+// import {postLoaded, postRequested, postError} from '../../actions';
+import {postLoaded, postRequested} from './postListSlice';
 
 import './post-list.scss'
 
@@ -21,7 +22,7 @@ const PostList = ({InstService}) => {
         dispatch(postRequested())
         InstService.getPostItems()
             .then(res => dispatch(postLoaded(res)))
-            .catch(error => dispatch(postError()))
+            // .catch(error => dispatch(postError()))
             
         // commentRequested();
         // InstService.getCommentItems()

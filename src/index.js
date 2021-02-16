@@ -6,12 +6,18 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import ErrorBoundry from './components/error-boundry';
 import InstService from './services/inst-service';
 import InstServiceContext from './components/inst-service-context';
-import store from './store';
+// import store from './store';
+import rootReducer from './reducers';
+import {configureStore} from '@reduxjs/toolkit';
 
 
 import './index.css';
 
 const instService = new InstService();
+
+const store = configureStore({
+    reducer: rootReducer
+});
 
 ReactDOM.render(
     <Provider store={store}>
