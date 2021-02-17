@@ -5,7 +5,7 @@ import WithInstService from '../hoc';
 import Error from '../error';
 import Spinner from '../spinner';
 // import {postLoaded, postRequested, postError} from '../../actions';
-import {postLoaded, postRequested} from './postListSlice';
+import {postLoaded, postRequested, postError} from './postListSlice';
 
 import './post-list.scss'
 
@@ -13,16 +13,16 @@ const PostList = ({InstService}) => {
     
     const dispatch = useDispatch();
 
-    const postItems = useSelector(state => state.posts);
-    const loading = useSelector(state => state.loading);
-    const error = useSelector(state => state.error);
+    const postItems = useSelector(state => state.postList.posts);
+    const loading = useSelector(state => state.postList.loading);
+    const error = useSelector(state => state.postList.error);
      // const commentItems = useSelector(state => state.comments);
 
     useEffect(() => {
         dispatch(postRequested())
         InstService.getPostItems()
             .then(res => dispatch(postLoaded(res)))
-            // .catch(error => dispatch(postError()))
+            .catch(error => dispatch(postError()))
             
         // commentRequested();
         // InstService.getCommentItems()

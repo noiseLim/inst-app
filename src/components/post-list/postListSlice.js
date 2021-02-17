@@ -8,22 +8,30 @@ const postListSlice = createSlice({
         error: false
     },
     reducers: {
-        postLoaded: {
-            reducer(state, action) {
-                const {posts} = action.payload
-                state({posts, loading: false})
-            },
-            prepare(newPost) {
-                return {payload: newPost}
-            }
+        postLoaded: (state, action) => {
+            return {
+                ...state,
+                posts: action.payload,
+                loading: false
+            };
         },
-        postRequested(state, action) {
-            const {posts} = state.posts
-            state({posts, loading: true})
+        postRequested: (state) => {
+            return {
+                ...state,
+                posts: state.posts,
+                loading: true
+            };
+        },
+        postError: (state) => {
+            return {
+                ...state,
+                posts: state.posts,
+                error: true
+            };
         }
     }
 })
 
-export const {postLoaded, postRequested} = postListSlice.actions
+export const {postLoaded, postRequested, postError} = postListSlice.actions
 
 export default postListSlice.reducer
